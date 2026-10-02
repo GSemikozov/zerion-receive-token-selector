@@ -20,7 +20,19 @@ cp .env.example .env.local   # then set ZERION_API_KEY
 npm run dev                  # http://localhost:3000
 ```
 
-The API key is read only by the Vite dev/preview server, which proxies `/api/zerion/*` to `api.zerion.io` and adds the auth header — it never ships in the client bundle. In production the same job belongs to a small backend.
+The API key is read only by the Vite dev/preview server, which proxies `/api/zerion/*` to `api.zerion.io` and adds the auth header — it never ships in the client bundle.
+
+## Deploying to Netlify
+
+`netlify.toml` builds with `npm run build` and publishes `dist`; Node comes from `.nvmrc`. In production the proxy is the edge function `netlify/edge-functions/zerion-proxy.ts`. It only forwards `GET /v1/fungibles/` and `GET /v1/chains/` (so it can't be used as an open proxy on your key) and lets Netlify's CDN cache responses for 60s to save the daily quota.
+
+Add the key under **Site configuration → Environment variables**:
+
+- Key: `ZERION_API_KEY`. No `VITE_` prefix: that would bake it into the public bundle.
+- Scope: **Functions** only. The build doesn't need it.
+- Tick **Contains secret values**, so Netlify masks it in logs and fails a deploy if it ever leaks into the build output.
+
+Then redeploy. The edge function reads env vars at request time.
 
 ## Scripts
 

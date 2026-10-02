@@ -4,10 +4,11 @@ import react from '@vitejs/plugin-react';
 import { loadEnv, type ProxyOptions } from 'vite';
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
   // Not VITE_-prefixed on purpose: the key stays on the dev server and never reaches the bundle.
   const { ZERION_API_KEY } = loadEnv(mode, import.meta.dirname, '');
-  if (!ZERION_API_KEY && mode !== 'test') {
+  // Only the dev/preview proxy needs it; in production (Netlify) an edge function adds the key.
+  if (!ZERION_API_KEY && command === 'serve' && mode !== 'test') {
     console.warn('ZERION_API_KEY is not set — copy .env.example to .env.local');
   }
 

@@ -18,7 +18,7 @@ Node 22 (`nvm use`).
 - `npm run typecheck`
 - `npm run build`
 
-Zerion API: put `ZERION_API_KEY` in `.env.local` (see `.env.example`). The Vite dev/preview proxy at `/api/zerion` adds the auth header, so the key never reaches the client bundle — never expose it via a `VITE_` variable.
+Zerion API: put `ZERION_API_KEY` in `.env.local` (see `.env.example`). The Vite dev/preview proxy at `/api/zerion` adds the auth header, so the key never reaches the client bundle — never expose it via a `VITE_` variable. In production the Netlify edge function `netlify/edge-functions/zerion-proxy.ts` does the same job (path allowlist + CDN cache); keep the two in sync.
 
 ## Layout
 

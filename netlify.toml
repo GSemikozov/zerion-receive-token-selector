@@ -1,0 +1,5 @@
+# Node version comes from .nvmrc. ZERION_API_KEY is set in the Netlify UI (Functions scope) and
+# read only by netlify/edge-functions/zerion-proxy.ts — never at build time.
+[build]
+  command = "npm run build"
+  publish = "dist"
