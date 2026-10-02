@@ -1,5 +1,7 @@
 # zerion-receive-token-selector
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0355755e-8bc9-4a8d-ac5f-aa2ea7e5e9e0/deploy-status)](https://app.netlify.com/projects/zerion-receive-token-selector/deploys)
+
 **Live demo:** https://zerion-receive-token-selector.netlify.app/
 
 A reproduction of the **Receive** token selector from [Zerion Swap](https://app.zerion.io/swap), built on the [Zerion API](https://developers.zerion.io).
