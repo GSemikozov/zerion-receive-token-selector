@@ -12,6 +12,8 @@ dist
 
 # Editor / OS
 .cursor/
+# Machine-specific (absolute node path); used by the Claude desktop preview
+.claude/launch.json
 .DS_Store
 .idea
 .vscode/*
