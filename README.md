@@ -1,5 +1,7 @@
 # zerion-receive-token-selector
 
+**Live demo:** https://zerion-receive-token-selector.netlify.app/
+
 A reproduction of the **Receive** token selector from [Zerion Swap](https://app.zerion.io/swap), built on the [Zerion API](https://developers.zerion.io).
 
 - Live tokens from `GET /v1/fungibles`, filtered by network server-side, loaded 100 at a time on scroll (React Query infinite query, virtualized with `@tanstack/react-virtual`)
@@ -21,18 +23,6 @@ npm run dev                  # http://localhost:3000
 ```
 
 The API key is read only by the Vite dev/preview server, which proxies `/api/zerion/*` to `api.zerion.io` and adds the auth header — it never ships in the client bundle.
-
-## Deploying to Netlify
-
-`netlify.toml` builds with `npm run build` and publishes `dist`; Node comes from `.nvmrc`. In production the proxy is the edge function `netlify/edge-functions/zerion-proxy.ts`. It only forwards `GET /v1/fungibles/` and `GET /v1/chains/` (so it can't be used as an open proxy on your key) and lets Netlify's CDN cache responses for 60s to save the daily quota.
-
-Add the key under **Site configuration → Environment variables**:
-
-- Key: `ZERION_API_KEY`. No `VITE_` prefix: that would bake it into the public bundle.
-- Scope: **Functions** only. The build doesn't need it.
-- Tick **Contains secret values**, so Netlify masks it in logs and fails a deploy if it ever leaks into the build output.
-
-Then redeploy. The edge function reads env vars at request time.
 
 ## Scripts
 
