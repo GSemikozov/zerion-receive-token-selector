@@ -19,7 +19,7 @@ export function App() {
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 px-4 py-12">
       <header className="flex items-center gap-2">
         <Sparkles className="size-5 text-primary" aria-hidden />
-        <h1 className="text-xl font-semibold">Zerion Interview</h1>
+        <h1 className="text-xl font-semibold">Zerion demo</h1>
       </header>
 
       <section className="flex items-center justify-between rounded-xl border border-border bg-card p-4">
